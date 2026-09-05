@@ -1,0 +1,5 @@
+[
+  {"id":"space_12","name":"Near-Earth Orbit","w":12,"h":12,"theme":"space","tileColors":{"default":"#0a1528","alt":"#0d1c35","hazard":"#1a2040"},"terrain":{}},
+  {"id":"city_12","name":"Ruined Colony City","w":12,"h":12,"theme":"city","tileColors":{"default":"#1a1e24","alt":"#222830","hazard":"#3a2a1a"},"terrain":{"3,3":"rubble","3,4":"rubble","4,3":"rubble","8,7":"rubble","8,8":"rubble","7,8":"rubble"}},
+  {"id":"asteroid_12","name":"Asteroid Belt","w":12,"h":12,"theme":"asteroid","tileColors":{"default":"#1a1814","alt":"#242018","hazard":"#3a3020"},"terrain":{"2,2":"rock","2,3":"rock","5,5":"rock","5,6":"rock","6,5":"rock","9,3":"rock","9,4":"rock","4,9":"rock"}}
+]

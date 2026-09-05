@@ -1,0 +1,15 @@
+{
+  "pairBonus": {"atk":0.12,"def":0.08,"label":"Original Pair Tag Bonus"},
+  "seriesBonus": {"count":3,"atk":0.08,"label":"Series Synergy (3+)"},
+  "tags": [
+    {"id":"gundam","name":"Gundam"},
+    {"id":"protagonist","name":"Protagonist"},
+    {"id":"newtype","name":"Newtype"},
+    {"id":"gn","name":"GN Drive"},
+    {"id":"zero_system","name":"ZERO System"},
+    {"id":"avio","name":"AV System"},
+    {"id":"zeon","name":"Zeon"},
+    {"id":"federation","name":"Federation"},
+    {"id":"boss","name":"Boss"}
+  ]
+}

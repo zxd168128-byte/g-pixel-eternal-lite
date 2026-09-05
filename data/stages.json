@@ -1,0 +1,219 @@
+[
+  {
+    "id": "s1",
+    "name": "Tutorial Sortie",
+    "type": "normal",
+    "mapId": "space_12",
+    "ap": 0,
+    "tutorial": true,
+    "playerSpawns": [
+      [
+        2,
+        9
+      ],
+      [
+        3,
+        9
+      ],
+      [
+        2,
+        10
+      ]
+    ],
+    "enemies": [
+      {
+        "enemyId": "grunt_zack",
+        "x": 5,
+        "y": 6
+      },
+      {
+        "enemyId": "grunt_zaku",
+        "x": 6,
+        "y": 5
+      },
+      {
+        "enemyId": "grunt_zack",
+        "x": 4,
+        "y": 6
+      }
+    ],
+    "rewards": {
+      "coins": 500,
+      "gems": 30,
+      "exp": 100,
+      "mats": 2
+    },
+    "briefing": "New Game: RX-78 + Amuro. Select → Move → Attack. Clear all hostiles."
+  },
+  {
+    "id": "s2",
+    "name": "City Ambush",
+    "type": "normal",
+    "mapId": "city_12",
+    "ap": 5,
+    "playerSpawns": [
+      [
+        1,
+        10
+      ],
+      [
+        2,
+        10
+      ],
+      [
+        3,
+        10
+      ],
+      [
+        2,
+        9
+      ]
+    ],
+    "enemies": [
+      {
+        "enemyId": "grunt_zaku",
+        "x": 8,
+        "y": 2
+      },
+      {
+        "enemyId": "grunt_gm",
+        "x": 9,
+        "y": 3
+      },
+      {
+        "enemyId": "grunt_zack",
+        "x": 7,
+        "y": 4
+      },
+      {
+        "enemyId": "grunt_zaku",
+        "x": 10,
+        "y": 2
+      }
+    ],
+    "rewards": {
+      "coins": 800,
+      "gems": 40,
+      "exp": 150,
+      "mats": 3
+    },
+    "briefing": "Urban rubble slows movement. Watch flanks."
+  },
+  {
+    "id": "s3",
+    "name": "Asteroid Skirmish",
+    "type": "normal",
+    "mapId": "asteroid_12",
+    "ap": 5,
+    "playerSpawns": [
+      [
+        1,
+        9
+      ],
+      [
+        2,
+        9
+      ],
+      [
+        3,
+        10
+      ],
+      [
+        1,
+        10
+      ]
+    ],
+    "enemies": [
+      {
+        "enemyId": "grunt_zaku",
+        "x": 8,
+        "y": 1
+      },
+      {
+        "enemyId": "grunt_gm",
+        "x": 9,
+        "y": 2
+      },
+      {
+        "enemyId": "grunt_zack",
+        "x": 10,
+        "y": 3
+      },
+      {
+        "enemyId": "grunt_zaku",
+        "x": 7,
+        "y": 2
+      },
+      {
+        "enemyId": "grunt_gm",
+        "x": 9,
+        "y": 4
+      }
+    ],
+    "rewards": {
+      "coins": 1200,
+      "gems": 50,
+      "exp": 200,
+      "mats": 4
+    },
+    "briefing": "Asteroid rocks block LOS. Use cover."
+  },
+  {
+    "id": "s4",
+    "name": "Red Comet",
+    "type": "boss",
+    "mapId": "space_12",
+    "ap": 8,
+    "playerSpawns": [
+      [
+        2,
+        10
+      ],
+      [
+        3,
+        10
+      ],
+      [
+        4,
+        10
+      ],
+      [
+        2,
+        9
+      ],
+      [
+        3,
+        9
+      ]
+    ],
+    "enemies": [
+      {
+        "enemyId": "boss_char",
+        "x": 6,
+        "y": 2
+      },
+      {
+        "enemyId": "grunt_zaku",
+        "x": 4,
+        "y": 3
+      },
+      {
+        "enemyId": "grunt_zaku",
+        "x": 8,
+        "y": 3
+      },
+      {
+        "enemyId": "grunt_gm",
+        "x": 5,
+        "y": 1
+      }
+    ],
+    "rewards": {
+      "coins": 3000,
+      "gems": 150,
+      "exp": 500,
+      "mats": 8
+    },
+    "briefing": "Sazabi — 3 phases at 100%/66%/33% HP. Bring your best."
+  }
+]

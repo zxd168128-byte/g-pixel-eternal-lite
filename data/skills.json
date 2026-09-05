@@ -1,0 +1,18 @@
+[
+  {"id":"newtype_flash","name":"Newtype Flash","desc":"Hit +10% when HP < 50%"},
+  {"id":"psychoframe","name":"Psycho-Frame","desc":"Crit +10%, EN regen +2/turn"},
+  {"id":"fin_funnel_barrage","name":"Fin Funnel Barrage","desc":"Fin Funnel ignores counter once/battle"},
+  {"id":"zero_system","name":"ZERO System","desc":"ATK/DEF +10% when tension high"},
+  {"id":"hyper_mode","name":"Hyper Mode","desc":"Melee damage +20% after first kill"},
+  {"id":"trans_am","name":"Trans-Am","desc":"Once/battle: MOV+2 ATK+25% for 1 turn"},
+  {"id":"twin_drive","name":"Twin Drive","desc":"EN regen +15%/turn"},
+  {"id":"raisers_burst","name":"Raiser Burst","desc":"Raiser Sword power +15%"},
+  {"id":"avio_system","name":"AV System","desc":"Melee crit +8%"},
+  {"id":"alaya_vijnana","name":"Alaya-Vijnana","desc":"Mob +15 when adjacent to ally"},
+  {"id":"boss_phases","name":"Multi-Phase Armor","desc":"Boss shifts phase at 66%/33% HP"},
+  {"id":"newtype_intuition","name":"Newtype Intuition","desc":"Pilot: evade first hit/turn 15%"},
+  {"id":"self_destruct_resolve","name":"Resolve","desc":"Pilot: ATK +20% below 30% HP"},
+  {"id":"burning_finger","name":"Burning Finger","desc":"Pilot: God Finger crit +20%"},
+  {"id":"innovation","name":"Innovation","desc":"Pilot: EN costs -20%"},
+  {"id":"nt_d_link","name":"NT-D Link","desc":"Pilot: Psycho weapons +10% power"}
+]

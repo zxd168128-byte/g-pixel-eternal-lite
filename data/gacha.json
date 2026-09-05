@@ -1,0 +1,39 @@
+{
+  "costs": {"single": 300, "multi": 3000},
+  "currency": "gems",
+  "pity": {
+    "unitUr": 200,
+    "supportUr": 300,
+    "ssrPlus": 10,
+    "softPityStart": 180
+  },
+  "rates": {
+    "buckets": [
+      {"kind":"unit","rarity":"UR","rate":0.03},
+      {"kind":"support","rarity":"UR","rate":0.01},
+      {"kind":"unit","rarity":"SSR","rate":0.15},
+      {"kind":"support","rarity":"SSR","rate":0.03},
+      {"kind":"unit","rarity":"SR","rate":0.30},
+      {"kind":"unit","rarity":"R","rate":0.48}
+    ]
+  },
+  "banners": [
+    {
+      "id": "permanent",
+      "name": "Standard Pool",
+      "type": "permanent",
+      "upUnitIds": [],
+      "featuredNote": "All VS units + pilots as supports"
+    },
+    {
+      "id": "raiser_up",
+      "name": "00 Raiser UP",
+      "type": "limited",
+      "upUnitIds": ["oo_raiser","oo_gundam"],
+      "upSupportIds": ["setsuna"],
+      "featuredNote": "00 Raiser / Setsuna rate-up ×5"
+    }
+  ],
+  "supportsAsPilots": true,
+  "debugGrant": {"gems": 3000, "coins": 10000}
+}

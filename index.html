@@ -1,50 +1,24 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <title>G-Pixel Eternal Lite · VS 0.1b</title>
-  <link rel="stylesheet" href="css/style.css?v=vs01b" />
-</head>
-<body>
-  <div id="app">
-    <header class="topbar" id="topbar">
-      <div class="title">G-Pixel Lite</div>
-      <div class="res" id="res-line"></div>
-    </header>
-
-    <div id="main-views">
-      <div id="view-sortie" class="view"></div>
-      <div id="view-party" class="view hidden"></div>
-      <div id="view-roster" class="view hidden"></div>
-      <div id="view-gacha" class="view hidden"></div>
-      <div id="view-shop" class="view hidden"></div>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GGEN Private VS01 — Gundam Fan SRPG</title>
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body { width: 100%; height: 100%; overflow: hidden; background: #0a0e14; color: #e8eef7; font-family: "Segoe UI", system-ui, sans-serif; }
+      #app { position: relative; width: 100%; height: 100%; }
+      #game-root { width: 100%; height: 100%; }
+      #overlay { position: absolute; inset: 0; pointer-events: none; z-index: 10; }
+      #overlay .panel { pointer-events: auto; }
+      .hidden { display: none !important; }
+    </style>
+    <script type="module" crossorigin src="./assets/index-Bn0gE_ep.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div id="game-root"></div>
+      <div id="overlay"></div>
     </div>
-
-    <div id="combat-view" class="view hidden">
-      <div class="combat-hud" id="combat-hud"></div>
-      <div class="board-wrap"><div id="board"></div></div>
-      <div class="combat-controls" id="combat-controls"></div>
-      <div class="combat-log" id="combat-log"></div>
-    </div>
-
-    <nav class="tabbar">
-      <button data-tab="sortie" class="active"><span class="ico">⚔</span>出击</button>
-      <button data-tab="party"><span class="ico">👥</span>编队</button>
-      <button data-tab="roster"><span class="ico">🤖</span>机体</button>
-      <button data-tab="gacha"><span class="ico">🎲</span>抽卡</button>
-      <button data-tab="shop"><span class="ico">🏪</span>商店</button>
-    </nav>
-  </div>
-
-  <script src="js/data/units.js?v=vs01b"></script>
-  <script src="js/data/stages.js?v=vs01b"></script>
-  <script src="js/data/gacha.js?v=vs01b"></script>
-  <script src="js/sprites.js?v=vs01b"></script>
-  <script src="js/state.js?v=vs01b"></script>
-  <script src="js/combat.js?v=vs01b"></script>
-  <script src="js/ui.js?v=vs01b"></script>
-  <script src="js/app.js?v=vs01b"></script>
-</body>
+  </body>
 </html>

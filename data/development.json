@@ -1,0 +1,34 @@
+{
+  "inheritLevelRatio": 0.5,
+  "trees": [
+    {
+      "id": "00_chain",
+      "name": "Celestial Being · GN Drive",
+      "series": "00",
+      "nodes": [
+        {"id":"d_exia","unitId":"exia","from":null,"reqLv":1,"costCapital":500,"costGems":0,"name":"Produce Exia","produce":true},
+        {"id":"d_oo","unitId":"oo_gundam","from":["d_exia"],"reqLv":5,"costCapital":1800,"costMats":2,"name":"Develop 00 Gundam"},
+        {"id":"d_raiser","unitId":"oo_raiser","from":["d_oo"],"reqLv":8,"costCapital":3500,"costMats":4,"costGems":50,"name":"Develop 00 Raiser"}
+      ]
+    },
+    {
+      "id": "ibo_chain",
+      "name": "Tekkadan · Barbatos",
+      "series": "IBO",
+      "nodes": [
+        {"id":"d_barb","unitId":"barbatos","from":null,"reqLv":1,"costCapital":400,"name":"Produce Barbatos","produce":true},
+        {"id":"d_lupus","unitId":"barbatos_l4","from":["d_barb"],"reqLv":4,"costCapital":1200,"costMats":2,"name":"Develop Barbatos Lupus"},
+        {"id":"d_rex","unitId":"barbatos_l6","from":["d_lupus"],"reqLv":7,"costCapital":2800,"costMats":3,"name":"Develop Lupus Rex"}
+      ]
+    },
+    {
+      "id": "w_chain",
+      "name": "Operation Meteor · Wing",
+      "series": "W",
+      "nodes": [
+        {"id":"d_wing","unitId":"wing","from":null,"reqLv":1,"costCapital":500,"name":"Produce Wing","produce":true},
+        {"id":"d_zero","unitId":"wing_zero_ew","from":["d_wing"],"reqLv":5,"costCapital":2000,"costMats":2,"name":"Develop Wing Zero EW"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+[
+  {"id":"grunt_zaku","unitId":"zaku_ii","label":"Zaku II Grunt","hpMul":0.7,"atkMul":0.85,"defMul":0.9},
+  {"id":"grunt_gm","unitId":"gm_custom","label":"GM Custom","hpMul":0.75,"atkMul":0.9,"defMul":0.95},
+  {"id":"grunt_zack","unitId":"zack_grunt","label":"Zack Scout","hpMul":0.65,"atkMul":0.8,"defMul":0.85},
+  {"id":"boss_char","unitId":"boss_sazabi","label":"Sazabi (Char)","hpMul":1.0,"atkMul":1.0,"defMul":1.0,"isBoss":true,"phases":[
+    {"at":1.0,"label":"Phase 1 — Approach","atkMul":1.0,"weaponIds":["beam_tomahawk","mega_particle"]},
+    {"at":0.66,"label":"Phase 2 — Funnels Online","atkMul":1.15,"weaponIds":["funnel_swarm","beam_tomahawk"]},
+    {"at":0.33,"label":"Phase 3 — Red Comet","atkMul":1.35,"weaponIds":["funnel_swarm","mega_particle","beam_tomahawk"]}
+  ]}
+]

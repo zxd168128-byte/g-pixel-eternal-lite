@@ -1,0 +1,24 @@
+{
+  "sprites": {
+    "rx78": "assets/sprites/gundam.png",
+    "nu_gundam": "assets/sprites/hi_nu.png",
+    "wing_zero_ew": "assets/sprites/wing_zero_ew.png",
+    "god_gundam": "assets/sprites/freedom.png",
+    "oo_raiser": "assets/sprites/exia.png",
+    "exia": "assets/sprites/exia.png",
+    "oo_gundam": "assets/sprites/exia.png",
+    "barbatos": "assets/sprites/gundam.png",
+    "barbatos_l4": "assets/sprites/hi_nu.png",
+    "barbatos_l6": "assets/sprites/unicorn_dest.png",
+    "wing": "assets/sprites/wing.png",
+    "zaku_ii": "assets/sprites/zaku2.png",
+    "gm_custom": "assets/sprites/gm.png",
+    "zack_grunt": "assets/sprites/zack.png",
+    "boss_sazabi": "assets/sprites/sazabi.png",
+    "pilot_amuro": "assets/sprites/gundam.png",
+    "pilot_heero": "assets/sprites/wing_zero_ew.png",
+    "pilot_domon": "assets/sprites/freedom.png",
+    "pilot_setsuna": "assets/sprites/exia.png",
+    "pilot_banagher": "assets/sprites/hi_nu.png"
+  }
+}
