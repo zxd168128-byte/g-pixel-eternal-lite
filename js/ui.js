@@ -20,7 +20,14 @@ window.UI = {
   pixel(unit, size) {
     if (!unit) return '<div class="pixel-unit ' + (size || '') + '" style="background:#333">?</div>';
     const cls = 'pixel-unit ' + (size || '');
-    return '<div class="' + cls + '" style="background:' + unit.color + '">' + (unit.letter || '?') + '</div>';
+    let src = null;
+    try {
+      if (window.Sprites && Sprites.generate) src = Sprites.generate(unit);
+    } catch (e) { src = null; }
+    if (src) {
+      return '<div class="' + cls + '" title="' + (unit.name || '') + '"><img src="' + src + '" alt="' + (unit.letter || '') + '"/></div>';
+    }
+    return '<div class="' + cls + '" style="background:' + (unit.color || '#333') + '">' + (unit.letter || '?') + '</div>';
   },
 
   stars(n) {

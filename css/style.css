@@ -53,15 +53,27 @@ html, body {
 .res span { color: var(--ur); }
 .res .ap { color: var(--ok); }
 
+/* Global hide — #main-views also uses .hidden (not only .view) */
+.hidden { display: none !important; }
+
+#main-views {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
 .view {
   flex: 1 1 auto;
+  min-height: 0;
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   padding: 10px;
   padding-bottom: 16px;
+  background: var(--bg);
 }
-.view.hidden { display: none; }
 
 .tabbar {
   flex: 0 0 auto;
@@ -104,6 +116,12 @@ html, body {
 }
 .card h3 { margin: 0 0 6px; font-size: 14px; }
 .card .meta { color: var(--muted); font-size: 12px; }
+.card.onboard {
+  background: linear-gradient(135deg, #1a3a5c 0%, #2a1a4a 100%);
+  border: 2px solid var(--ur);
+  box-shadow: 0 0 16px rgba(245, 197, 66, 0.35);
+}
+.card.onboard h3 { color: var(--ur); font-size: 15px; }
 
 .rarity-UR { color: var(--ur); }
 .rarity-SSR { color: var(--ssr); }
@@ -113,12 +131,22 @@ html, body {
 .pixel-unit {
   width: 40px; height: 40px;
   image-rendering: pixelated;
+  image-rendering: crisp-edges;
   display: flex; align-items: center; justify-content: center;
   font-weight: 900; font-size: 16px; color: #111;
   border: 2px solid #000;
   box-shadow: inset -2px -2px 0 rgba(0,0,0,.25), inset 2px 2px 0 rgba(255,255,255,.25);
   border-radius: 2px;
   flex-shrink: 0;
+  overflow: hidden;
+  background: #222;
+}
+.pixel-unit img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  display: block;
 }
 .pixel-unit.sm { width: 28px; height: 28px; font-size: 12px; }
 .pixel-unit.lg { width: 56px; height: 56px; font-size: 22px; }
@@ -131,6 +159,7 @@ html, body {
 .unit-row .info { flex: 1; min-width: 0; }
 .unit-row .info .name { font-weight: 700; font-size: 13px; }
 .unit-row .info .stats { font-size: 11px; color: var(--muted); }
+.unit-row .info .skill-line { font-size: 11px; color: var(--accent); margin-top: 2px; }
 
 .grid-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .stage-card {
@@ -168,6 +197,10 @@ html, body {
   border-radius: 4px; padding: 4px; text-align: center;
 }
 .pull-results .pr .pixel-unit { margin: 0 auto 4px; }
+.pull-results .pr .sk {
+  font-size: 8px; color: var(--accent); overflow: hidden;
+  text-overflow: ellipsis; white-space: nowrap;
+}
 
 .modal-bg {
   position: absolute; inset: 0; background: rgba(0,0,0,.72);
@@ -185,7 +218,11 @@ html, body {
 .modal .actions { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
 
 /* Combat */
-#combat-view { padding: 0; display: flex; flex-direction: column; height: 100%; }
+#combat-view {
+  padding: 0; display: flex; flex-direction: column;
+  flex: 1 1 auto; min-height: 0; background: var(--bg);
+}
+#combat-view.hidden { display: none !important; }
 .combat-hud {
   flex: 0 0 auto; padding: 8px 10px; background: var(--panel);
   border-bottom: 1px solid var(--border); font-size: 12px;
@@ -193,7 +230,7 @@ html, body {
 .combat-hud .row { display: flex; justify-content: space-between; gap: 8px; align-items: center; }
 .board-wrap {
   flex: 1 1 auto; display: flex; align-items: center; justify-content: center;
-  padding: 6px; background: #0a0e14;
+  padding: 6px; background: #0a0e14; min-height: 0;
 }
 #board {
   display: grid;
@@ -217,6 +254,15 @@ html, body {
   display: flex; align-items: center; justify-content: center;
   font-weight: 900; font-size: 13px; color: #111;
   border: 2px solid #000; border-radius: 2px;
+  overflow: hidden;
+  background: #222;
+}
+.cell .mu img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  display: block;
 }
 .cell .mu.enemy { outline: 2px solid var(--danger); }
 .cell .mu.player { outline: 2px solid var(--accent); }

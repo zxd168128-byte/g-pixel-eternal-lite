@@ -1,4 +1,4 @@
-# G-Pixel Eternal Lite · Vertical Slice 0.1
+# G-Pixel Eternal Lite · Vertical Slice 0.1b
 
 像素风 SD 机体收集 × 抽卡 × 六人回合格子战（对标 G 世纪永恒核心循环精简版）。
 
@@ -11,10 +11,10 @@
 
 ```bash
 cd /workspace/ggen-lite/web
-python3 -m http.server 8800
+python3 -m http.server 8811
 ```
 
-手机/浏览器打开：`http://localhost:8800/`（或本机局域网 IP:8800）。
+手机/浏览器打开：`http://localhost:8811/`（或本机局域网 IP:8811）。
 
 竖屏宽度约 **390px** 最佳；桌面可缩小窗口或开开发者工具手机模式。
 
@@ -61,7 +61,7 @@ web/
   index.html
   css/style.css
   js/data/{units,stages,gacha}.js
-  js/{state,combat,ui,app}.js
+  js/{sprites,state,combat,ui,app}.js
   tests/selfcheck.js
   README.md
 ```

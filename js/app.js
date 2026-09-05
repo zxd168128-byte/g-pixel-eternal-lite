@@ -7,6 +7,7 @@
 
   function init() {
     GameState.load();
+    if (window.Sprites && Sprites.warmAll) Sprites.warmAll();
     bindTabs();
     UI.updateTopbar();
     if (!S().newbie.done && !S().newbie.locked) {
@@ -25,12 +26,18 @@
   function showTab(tab) {
     currentTab = tab;
     UI.$$('.tabbar button').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
-    UI.$$('.view').forEach(v => v.classList.add('hidden'));
+    UI.$$('#main-views .view').forEach(v => v.classList.add('hidden'));
     const combat = UI.$('#combat-view');
     if (combat) combat.classList.add('hidden');
-    UI.$('#main-views').classList.remove('hidden');
-    UI.$('.tabbar').style.display = '';
-    UI.$('#topbar').style.display = '';
+    const mv = UI.$('#main-views');
+    if (mv) {
+      mv.classList.remove('hidden');
+      mv.style.display = 'flex';
+    }
+    const tb = UI.$('.tabbar');
+    if (tb) { tb.style.display = ''; tb.classList.remove('hidden'); }
+    const top = UI.$('#topbar');
+    if (top) { top.style.display = ''; top.classList.remove('hidden'); }
 
     const map = {
       sortie: renderSortie,
@@ -50,7 +57,14 @@
   // ---------- Sortie ----------
   function renderSortie(el) {
     const ch = GGEN_CHAPTERS[0];
-    let html = '<div class="card"><h3>' + ch.name + '</h3>' +
+    let html = '';
+    if (S().newbie && S().newbie.done && !S().tutorialSeen) {
+      html += '<div class="card onboard"><h3>下一步：编队 → 出击1-1</h3>' +
+        '<p class="meta">新手十连已锁定。先确认编队有6机体，再点 1-1 开战。</p>' +
+        '<button class="btn sm gold" id="btn-go-party">去编队</button> ' +
+        '<button class="btn sm ghost" id="btn-dismiss-tip">知道了</button></div>';
+    }
+    html += '<div class="card"><h3>' + ch.name + '</h3>' +
       '<p class="meta">8关 · 8×8格子战 · 经典我方回合</p></div>';
     html += '<div class="grid-list">';
     ch.stages.forEach(st => {
@@ -67,6 +81,16 @@
     UI.$$('.stage-card', el).forEach(card => {
       card.onclick = () => startStage(card.dataset.stage);
     });
+    if (UI.$('#btn-go-party', el)) {
+      UI.$('#btn-go-party', el).onclick = () => showTab('party');
+    }
+    if (UI.$('#btn-dismiss-tip', el)) {
+      UI.$('#btn-dismiss-tip', el).onclick = () => {
+        S().tutorialSeen = true;
+        GameState.save();
+        renderSortie(el);
+      };
+    }
   }
 
   function startStage(stageId) {
@@ -188,8 +212,8 @@
         '<div class="info"><div class="name">' + UI.rarityBadge(u.rarity) + ' ' + u.name +
         ' ★' + u.owned.stars + ' Lv.' + u.owned.level + '</div>' +
         '<div class="stats">HP' + u.hp + ' ATK' + u.atk + ' DEF' + u.def +
-        ' MOV' + u.mov + ' 射程' + u.range + ' · ' + u.type + ' · ' + u.series +
-        '<br>' + (u.skill || '') + ' — ' + (u.desc || '') + '</div></div></div>';
+        ' MOV' + u.mov + ' 射程' + u.range + ' · ' + u.type + ' · ' + u.series + '</div>' +
+        '<div class="skill-line">技能：' + (u.skill || '—') + (u.desc ? ' — ' + u.desc : '') + '</div></div></div>';
     });
     html += '<div class="card" style="margin-top:12px"><h3>支援舰</h3></div>';
     supports.forEach(s => {
@@ -312,7 +336,9 @@
       html += '<div class="pr">' + UI.pixel(item, 'sm') +
         '<div class="rarity-' + r.rarity + '" style="font-size:10px">' + r.rarity + '</div>' +
         '<div style="font-size:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' +
-        (item ? item.name : '?') + '</div></div>';
+        (item ? item.name : '?') + '</div>' +
+        (item && item.skill ? '<div class="sk">' + item.skill + '</div>' : '') +
+        '</div>';
     });
     html += '</div><div class="actions"><button class="btn block" id="m-ok">好的</button></div>';
     UI.showModal(html, { center: true, sticky: true });
@@ -339,7 +365,9 @@
       const item = r.item;
       html += '<div class="pr">' + UI.pixel(item, 'sm') +
         '<div class="rarity-' + r.rarity + '" style="font-size:10px">' + r.rarity + '</div>' +
-        '<div style="font-size:10px">' + (item ? item.name : '') + '</div></div>';
+        '<div style="font-size:10px">' + (item ? item.name : '') + '</div>' +
+        (item && item.skill ? '<div class="sk">' + item.skill + '</div>' : '') +
+        '</div>';
     });
     html += '</div><div class="actions">';
     if (left > 0) html += '<button class="btn ghost" id="nb-reroll">重抽 (' + left + ')</button>';
@@ -361,22 +389,26 @@
         if (r.kind === 'unit' && r.item) GameState.addUnit(r.item.id, 1);
         if (r.kind === 'support' && r.item) GameState.addSupport(r.item.id, 1);
       });
-      // auto put best UR into party slot 0
       const ur = nb.pending.find(r => r.kind === 'unit' && r.rarity === 'UR');
-      if (ur && ur.item) {
-        const idx = S().party.units.indexOf(ur.item.id);
-        if (idx < 0) {
-          // put in first slot, shift if needed
-          S().party.units[0] = ur.item.id;
-        }
+      const urId = ur && ur.item ? ur.item.id : null;
+      // starters + UR in slot0, always 6 units
+      if (typeof GameState.grantStarter === 'function') {
+        // grantStarter only fills if missing owned — call ensureFullParty
       }
+      GameState.ensureFullParty(urId);
       nb.done = true;
       nb.locked = true;
       nb.pending = null;
+      S().tutorialSeen = false;
       GameState.save();
       UI.hideModal();
       UI.toast('新手十连已锁定');
-      showTab('party');
+      // restore chrome + sortie (NOT black)
+      const mv = UI.$('#main-views');
+      if (mv) { mv.classList.remove('hidden'); mv.style.display = 'flex'; }
+      UI.$('.tabbar').style.display = '';
+      UI.$('#topbar').style.display = '';
+      showTab('sortie');
     };
   }
 
@@ -422,6 +454,7 @@
     UI.$('#topbar').style.display = 'none';
     const cv = UI.$('#combat-view');
     cv.classList.remove('hidden');
+    cv.style.display = 'flex';
 
     Combat.clearListeners();
     Combat.on('update', renderCombat);
@@ -435,8 +468,10 @@
     hud.innerHTML = '<div class="row"><strong>' + b.stage.name + '</strong><span>回合 ' + b.turn +
       ' · ' + (b.phase === 'player' ? '我方' : b.phase === 'enemy' ? '敌方' : '结算') + '</span></div>' +
       (b.stage.mechanismHint ? '<div class="hint">' + b.stage.mechanismHint + '</div>' : '') +
-      (b.selected ? '<div class="hint">已选 ' + b.selected.name + ' · ' +
-        (b.mode === 'move' ? '点击蓝色格移动' : '点击红格攻击 / 点自己待机') + '</div>' : '<div class="hint">点击我方机体行动</div>');
+      (b.selected ? '<div class="hint">已选 ' + b.selected.name +
+        (b.selected.skill ? ' 【' + b.selected.skill + '】' : '') + ' · ' +
+        (b.mode === 'move' ? '点击蓝色格移动' : '点击红格攻击 / 点自己待机') + '</div>' : '<div class="hint">点击我方机体行动' +
+        (b.skillUsedThisBattle ? ' · 本场技能已用' : ' · 可发动1次技能') + '</div>');
 
     const board = UI.$('#board');
     board.style.gridTemplateColumns = 'repeat(' + b.w + ', 1fr)';
@@ -455,7 +490,16 @@
           if (u.isBuffer) mu += ' buffer';
           if (u.isBoss) mu += ' boss';
           const pct = Math.max(0, Math.floor(100 * u.hp / u.maxHp));
-          html += '<div class="' + mu + '" style="background:' + u.color + '">' + u.letter + '</div>';
+          let sprite = null;
+          try {
+            const base = getUnit(u.unitId);
+            if (base && window.Sprites) sprite = Sprites.generate(base);
+          } catch (e) {}
+          if (sprite) {
+            html += '<div class="' + mu + '"><img src="' + sprite + '" alt="' + u.letter + '"/></div>';
+          } else {
+            html += '<div class="' + mu + '" style="background:' + u.color + '">' + u.letter + '</div>';
+          }
           html += '<div class="hpbar ' + u.side + '"><i style="width:' + pct + '%"></i></div>';
         }
         html += '</div>';
@@ -467,10 +511,17 @@
     });
 
     const ctrls = UI.$('#combat-controls');
+    const canSkill = b.selected && b.phase === 'player' && !b.skillUsedThisBattle && b.selected.skillEffect && !b.selected.acted;
+    const skLabel = (b.selected && b.selected.skill) ? b.selected.skill.split('/')[0].trim() : (b.skillUsedThisBattle ? '已用' : '选机体');
     ctrls.innerHTML =
+      '<button class="btn sm gold" id="c-skill"' + (canSkill ? '' : ' disabled') + '>' +
+        (b.skillUsedThisBattle ? '技能已用' : '技能:' + skLabel) + '</button>' +
       '<button class="btn sm ghost" id="c-wait"' + (b.selected && b.phase === 'player' ? '' : ' disabled') + '>待机</button>' +
       '<button class="btn sm" id="c-end"' + (b.phase === 'player' && !b.result ? '' : ' disabled') + '>结束回合</button>' +
       '<button class="btn sm danger" id="c-flee">撤退</button>';
+    UI.$('#c-skill').onclick = () => {
+      if (b.selected) Combat.useSkill(b.selected.uid);
+    };
     UI.$('#c-wait').onclick = () => Combat.skipAction();
     UI.$('#c-end').onclick = () => Combat.endPlayerTurn();
     UI.$('#c-flee').onclick = () => {

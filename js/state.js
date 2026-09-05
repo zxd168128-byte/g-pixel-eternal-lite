@@ -1,5 +1,5 @@
 /** Persist player state in localStorage */
-const SAVE_KEY = 'ggen_lite_vs01';
+const SAVE_KEY = 'ggen_lite_vs01b';
 
 window.GameState = {
   data: null,
@@ -50,6 +50,13 @@ window.GameState = {
       this.data = this.defaultState();
       this.grantStarter();
     }
+    // heal broken saves: newbie done but empty party
+    if (this.data.newbie && this.data.newbie.done) {
+      const filled = (this.data.party.units || []).filter(Boolean).length;
+      if (filled < 6) this.ensureFullParty();
+    } else if (!Object.keys(this.data.ownedUnits || {}).length) {
+      this.grantStarter();
+    }
     this.regenAp();
     return this.data;
   },
@@ -62,6 +69,43 @@ window.GameState = {
     this.addSupport('whitebase', 1);
     this.data.party.units = ['gm', 'zaku2', 'gouf', 'ball', 'zack', 'gm_cannon'];
     this.data.party.support = 'whitebase';
+  },
+
+  /** Ensure starters owned + 6 party slots filled; optional UR in slot 0 */
+  ensureFullParty(urUnitId) {
+    const starters = ['gm', 'zaku2', 'ball', 'zack', 'gouf', 'gm_cannon'];
+    starters.forEach(id => {
+      if (!this.data.ownedUnits[id]) this.addUnit(id, 1);
+    });
+    if (!this.data.ownedSupports['whitebase']) this.addSupport('whitebase', 1);
+    let units = (this.data.party.units || []).slice();
+    while (units.length < 6) units.push(null);
+    // fill empties from starters / owned
+    const used = new Set(units.filter(Boolean));
+    for (let i = 0; i < 6; i++) {
+      if (units[i]) continue;
+      const next = starters.find(id => !used.has(id) && this.data.ownedUnits[id]);
+      if (next) { units[i] = next; used.add(next); }
+    }
+    if (urUnitId && this.data.ownedUnits[urUnitId]) {
+      const idx = units.indexOf(urUnitId);
+      if (idx > 0) units[idx] = units[0];
+      else if (idx < 0) {
+        // bump slot0 out if needed
+      }
+      units[0] = urUnitId;
+      // dedupe
+      for (let i = 1; i < 6; i++) if (units[i] === urUnitId) units[i] = null;
+      const used2 = new Set(units.filter(Boolean));
+      for (let i = 0; i < 6; i++) {
+        if (units[i]) continue;
+        const next = starters.find(id => !used2.has(id) && this.data.ownedUnits[id]);
+        if (next) { units[i] = next; used2.add(next); }
+      }
+    }
+    this.data.party.units = units.slice(0, 6);
+    if (!this.data.party.support) this.data.party.support = 'whitebase';
+    this.save();
   },
 
   save() {

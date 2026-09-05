@@ -105,5 +105,46 @@ function assert(cond, msg) {
   assert(mechs.includes('boss_enrage'), 'has boss enrage stage');
 })();
 
+(function testNewbieParty() {
+  sandbox.GameState.reset();
+  assert(sandbox.SAVE_KEY === 'ggen_lite_vs01b' || true, 'save key module loaded');
+  // SAVE_KEY is const in state — check via behavior
+  const rawKey = Object.keys(sandbox.localStorage._d).find(k => k.startsWith('ggen_lite'));
+  assert(rawKey === 'ggen_lite_vs01b', 'SAVE_KEY is ggen_lite_vs01b (got ' + rawKey + ')');
+  const banner = sandbox.GGEN_GACHA.banners[0];
+  const nb = sandbox.gachaNewbieTen(banner);
+  nb.forEach(r => {
+    if (r.kind === 'unit' && r.item) sandbox.GameState.addUnit(r.item.id, 1);
+    if (r.kind === 'support' && r.item) sandbox.GameState.addSupport(r.item.id, 1);
+  });
+  const ur = nb.find(r => r.kind === 'unit' && r.rarity === 'UR');
+  sandbox.GameState.ensureFullParty(ur.item.id);
+  const party = sandbox.GameState.data.party.units.filter(Boolean);
+  assert(party.length === 6, 'party has 6 after newbie lock (' + party.length + ')');
+  assert(party[0] === ur.item.id, 'UR in slot0');
+  sandbox.GGEN_UNITS.forEach(u => {
+    assert(!!u.skill, u.id + ' has skill name');
+    assert(!!u.skillEffect, u.id + ' has skillEffect');
+  });
+  // skill use in battle
+  sandbox.GameState.data.ownedUnits.freedom = { stars: 3, level: 10 };
+  const stage = {
+    id: 'sk', name: 'skill',
+    map: { w: 8, h: 8, terrain: {} },
+    playerSpawns: [[2, 6]],
+    enemies: [{ unitId: 'ball', x: 2, y: 4, hpMul: 2 }],
+    stars: { turns: 10 },
+  };
+  sandbox.Combat.clearListeners();
+  sandbox.Combat.start(stage, ['freedom'], null);
+  const b = sandbox.Combat.battle;
+  const ok = sandbox.Combat.useSkill(b.players[0].uid);
+  assert(ok === true, 'skill use succeeds');
+  assert(b.skillUsedThisBattle === true, 'skill marked used');
+  const ok2 = sandbox.Combat.useSkill(b.players[0].uid);
+  assert(ok2 === false, 'second skill blocked');
+  sandbox.Combat.battle = null;
+})();
+
 console.log(failed ? '\n' + failed + ' failed' : '\nAll self-checks passed.');
 process.exit(failed ? 1 : 0);

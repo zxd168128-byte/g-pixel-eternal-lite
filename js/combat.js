@@ -44,6 +44,9 @@ window.Combat = {
         side: 'player',
         x, y,
         hp, maxHp: hp, atk, def, mov, range: base.range,
+        skill: base.skill || '',
+        skillEffect: base.skillEffect || null,
+        skillUsed: false,
         moved: false, acted: false, alive: true,
       });
     });
@@ -104,6 +107,7 @@ window.Combat = {
       deaths: 0,
       result: null,
       support,
+      skillUsedThisBattle: false,
     };
 
     this.log('战斗开始：' + stage.name);
@@ -258,6 +262,86 @@ window.Combat = {
         }
       }
     }
+  },
+
+  useSkill(uid) {
+    const b = this.battle;
+    if (!b || b.phase !== 'player' || b.result) return false;
+    if (b.skillUsedThisBattle) {
+      this.log('本场战斗技能已使用');
+      return false;
+    }
+    const u = b.players.find(p => p.uid === uid && p.alive);
+    if (!u || !u.skillEffect) {
+      this.log('无法发动技能');
+      return false;
+    }
+    if (u.acted) {
+      this.log(u.name + ' 已行动，无法发动技能');
+      return false;
+    }
+    const fx = u.skillEffect;
+    const skillName = u.skill || fx.label || '技能';
+    if (fx.kind === 'buff_self') {
+      if (fx.atkMul) u.atk = Math.floor(u.atk * fx.atkMul);
+      if (fx.defMul) u.def = Math.floor(u.def * fx.defMul);
+      if (fx.movBonus) u.mov += fx.movBonus;
+      this.log(u.name + ' 发动【' + skillName + '】强化自身！');
+    } else if (fx.kind === 'damage') {
+      const foes = b.enemies.filter(e => e.alive);
+      if (!foes.length) {
+        this.log('没有可攻击的敌人');
+        return false;
+      }
+      // pick nearest foe in extended range (skill range = max(unit.range, 3))
+      const skillRange = Math.max(u.range, 3);
+      let targets = foes.filter(e => {
+        const d = Math.abs(e.x - u.x) + Math.abs(e.y - u.y);
+        return d >= 1 && d <= skillRange;
+      });
+      if (!targets.length) {
+        // allow any nearest if aoe funnel-style
+        if (fx.aoe) targets = foes.slice().sort((a, c) =>
+          (Math.abs(a.x - u.x) + Math.abs(a.y - u.y)) - (Math.abs(c.x - u.x) + Math.abs(c.y - u.y))
+        ).slice(0, 3);
+        else {
+          this.log('技能射程内无敌人');
+          return false;
+        }
+      }
+      if (fx.aoe) {
+        targets = targets.slice(0, 3);
+      } else {
+        targets.sort((a, c) =>
+          (Math.abs(a.x - u.x) + Math.abs(a.y - u.y)) - (Math.abs(c.x - u.x) + Math.abs(c.y - u.y))
+        );
+        targets = [targets[0]];
+      }
+      this.log(u.name + ' 发动【' + skillName + '】！');
+      targets.forEach(foe => {
+        const mul = fx.mul || 2;
+        const raw = Math.max(1, Math.floor(u.atk * mul - foe.def * 0.3));
+        foe.hp -= raw;
+        this.log(skillName + ' → ' + foe.name + ' ' + raw + ' 伤害');
+        if (foe.hp <= 0) {
+          foe.hp = 0; foe.alive = false;
+          this.log(foe.name + ' 被击坠！');
+        }
+      });
+    } else {
+      this.log(u.name + ' 发动【' + skillName + '】');
+    }
+    u.skillUsed = true;
+    b.skillUsedThisBattle = true;
+    u.acted = true;
+    u.moved = true;
+    b.selected = null;
+    b.mode = 'select';
+    b.moveTiles = [];
+    b.attackTiles = [];
+    this.checkWinLose();
+    this.emit('update', b);
+    return true;
   },
 
   skipAction() {
