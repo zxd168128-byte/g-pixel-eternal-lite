@@ -1,30 +1,465 @@
 [
-  {"id":"beam_saber","name":"Beam Saber","wtype":"melee","dmgType":"beam","rangeMin":1,"rangeMax":1,"power":38,"en":8,"hit":100,"crit":8},
-  {"id":"beam_rifle","name":"Beam Rifle","wtype":"ranged","dmgType":"beam","rangeMin":2,"rangeMax":4,"power":42,"en":12,"hit":95,"crit":5},
-  {"id":"hyper_bazooka","name":"Hyper Bazooka","wtype":"ranged","dmgType":"physical","rangeMin":2,"rangeMax":3,"power":55,"en":0,"hit":85,"crit":10,"ammo":3},
-  {"id":"fin_funnel","name":"Fin Funnel","wtype":"ranged","dmgType":"beam","rangeMin":2,"rangeMax":5,"power":58,"en":22,"hit":100,"crit":5,"absoluteHit":true},
-  {"id":"buster_rifle","name":"Buster Rifle","wtype":"ranged","dmgType":"beam","rangeMin":2,"rangeMax":4,"power":52,"en":18,"hit":100,"crit":5},
-  {"id":"twin_buster","name":"Twin Buster Rifle","wtype":"ranged","dmgType":"beam","rangeMin":3,"rangeMax":5,"power":68,"en":28,"hit":100,"crit":8,"absoluteHit":true},
-  {"id":"god_finger","name":"God Finger","wtype":"melee","dmgType":"special","rangeMin":1,"rangeMax":1,"power":72,"en":20,"hit":100,"crit":15},
-  {"id":"sekha_hou","name":"Sekiha Tenkyoken","wtype":"ranged","dmgType":"special","rangeMin":1,"rangeMax":3,"power":65,"en":25,"hit":95,"crit":10},
-  {"id":"gn_sword","name":"GN Sword","wtype":"melee","dmgType":"physical","rangeMin":1,"rangeMax":1,"power":45,"en":10,"hit":100,"crit":10},
-  {"id":"gn_blade","name":"GN Blade","wtype":"melee","dmgType":"beam","rangeMin":1,"rangeMax":1,"power":40,"en":8,"hit":100,"crit":8},
-  {"id":"gn_vulcan","name":"GN Vulcan","wtype":"ranged","dmgType":"physical","rangeMin":1,"rangeMax":2,"power":28,"en":4,"hit":90,"crit":5},
-  {"id":"gn_sword_ii","name":"GN Sword II","wtype":"melee","dmgType":"physical","rangeMin":1,"rangeMax":2,"power":50,"en":12,"hit":100,"crit":10},
-  {"id":"gn_beam_saber","name":"GN Beam Saber","wtype":"melee","dmgType":"beam","rangeMin":1,"rangeMax":1,"power":42,"en":8,"hit":100,"crit":8},
-  {"id":"gn_beam_rifle","name":"GN Beam Rifle","wtype":"ranged","dmgType":"beam","rangeMin":2,"rangeMax":4,"power":48,"en":14,"hit":95,"crit":5},
-  {"id":"gn_sword_iii","name":"GN Sword III","wtype":"melee","dmgType":"beam","rangeMin":1,"rangeMax":2,"power":58,"en":14,"hit":100,"crit":12},
-  {"id":"raiser_sword","name":"Raiser Sword","wtype":"ranged","dmgType":"beam","rangeMin":1,"rangeMax":4,"power":75,"en":30,"hit":100,"crit":10,"absoluteHit":true},
-  {"id":"mace","name":"Mace","wtype":"melee","dmgType":"physical","rangeMin":1,"rangeMax":1,"power":35,"en":5,"hit":95,"crit":8},
-  {"id":"wrench_mace","name":"Wrench Mace","wtype":"melee","dmgType":"physical","rangeMin":1,"rangeMax":1,"power":42,"en":8,"hit":95,"crit":10},
-  {"id":"sword_mace","name":"Sword Mace","wtype":"melee","dmgType":"physical","rangeMin":1,"rangeMax":1,"power":50,"en":10,"hit":100,"crit":12},
-  {"id":"pile_bunker","name":"Pile Bunker","wtype":"melee","dmgType":"physical","rangeMin":1,"rangeMax":1,"power":60,"en":12,"hit":90,"crit":15},
-  {"id":"tail_blade","name":"Tail Blade","wtype":"melee","dmgType":"physical","rangeMin":1,"rangeMax":2,"power":55,"en":10,"hit":95,"crit":12},
-  {"id":"wrench_mace_rex","name":"Wrench Mace Rex","wtype":"melee","dmgType":"physical","rangeMin":1,"rangeMax":1,"power":70,"en":14,"hit":100,"crit":18},
-  {"id":"machine_gun","name":"Machine Gun","wtype":"ranged","dmgType":"physical","rangeMin":1,"rangeMax":3,"power":28,"en":0,"hit":85,"crit":5,"ammo":8},
-  {"id":"heat_hawk","name":"Heat Hawk","wtype":"melee","dmgType":"physical","rangeMin":1,"rangeMax":1,"power":32,"en":0,"hit":95,"crit":8},
-  {"id":"beam_spray","name":"Beam Spray Gun","wtype":"ranged","dmgType":"beam","rangeMin":1,"rangeMax":3,"power":30,"en":8,"hit":90,"crit":5},
-  {"id":"beam_tomahawk","name":"Beam Tomahawk","wtype":"melee","dmgType":"beam","rangeMin":1,"rangeMax":2,"power":55,"en":14,"hit":100,"crit":10},
-  {"id":"funnel_swarm","name":"Funnel Swarm","wtype":"ranged","dmgType":"beam","rangeMin":2,"rangeMax":5,"power":62,"en":24,"hit":100,"crit":5,"absoluteHit":true},
-  {"id":"mega_particle","name":"Mega Particle Cannon","wtype":"ranged","dmgType":"beam","rangeMin":3,"rangeMax":6,"power":80,"en":35,"hit":95,"crit":8}
+  {
+    "id": "beam_saber",
+    "name": "Beam Saber",
+    "wtype": "melee",
+    "dmgType": "beam",
+    "rangeMin": 1,
+    "rangeMax": 1,
+    "power": 38,
+    "en": 8,
+    "hit": 100,
+    "crit": 8
+  },
+  {
+    "id": "beam_rifle",
+    "name": "Beam Rifle",
+    "wtype": "ranged",
+    "dmgType": "beam",
+    "rangeMin": 2,
+    "rangeMax": 4,
+    "power": 42,
+    "en": 12,
+    "hit": 95,
+    "crit": 5
+  },
+  {
+    "id": "hyper_bazooka",
+    "name": "Hyper Bazooka",
+    "wtype": "ranged",
+    "dmgType": "physical",
+    "rangeMin": 2,
+    "rangeMax": 3,
+    "power": 55,
+    "en": 0,
+    "hit": 85,
+    "crit": 10,
+    "ammo": 3
+  },
+  {
+    "id": "fin_funnel",
+    "name": "Fin Funnel Barrage",
+    "wtype": "map",
+    "dmgType": "beam",
+    "rangeMin": 2,
+    "rangeMax": 5,
+    "power": 58,
+    "en": 22,
+    "hit": 100,
+    "crit": 5,
+    "absoluteHit": true,
+    "mapPattern": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        -1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        -1
+      ]
+    ]
+  },
+  {
+    "id": "buster_rifle",
+    "name": "Buster Rifle",
+    "wtype": "ranged",
+    "dmgType": "beam",
+    "rangeMin": 2,
+    "rangeMax": 4,
+    "power": 52,
+    "en": 18,
+    "hit": 100,
+    "crit": 5
+  },
+  {
+    "id": "twin_buster",
+    "name": "Twin Buster Rifle",
+    "wtype": "map",
+    "dmgType": "beam",
+    "rangeMin": 3,
+    "rangeMax": 5,
+    "power": 68,
+    "en": 28,
+    "hit": 100,
+    "crit": 8,
+    "absoluteHit": true,
+    "mapPattern": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        -1
+      ],
+      [
+        0,
+        -2
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        -1,
+        0
+      ]
+    ]
+  },
+  {
+    "id": "god_finger",
+    "name": "God Finger",
+    "wtype": "melee",
+    "dmgType": "special",
+    "rangeMin": 1,
+    "rangeMax": 1,
+    "power": 72,
+    "en": 20,
+    "hit": 100,
+    "crit": 15
+  },
+  {
+    "id": "sekha_hou",
+    "name": "Sekiha Tenkyoken",
+    "wtype": "ranged",
+    "dmgType": "special",
+    "rangeMin": 1,
+    "rangeMax": 3,
+    "power": 65,
+    "en": 25,
+    "hit": 95,
+    "crit": 10
+  },
+  {
+    "id": "gn_sword",
+    "name": "GN Sword",
+    "wtype": "melee",
+    "dmgType": "physical",
+    "rangeMin": 1,
+    "rangeMax": 1,
+    "power": 45,
+    "en": 10,
+    "hit": 100,
+    "crit": 10
+  },
+  {
+    "id": "gn_blade",
+    "name": "GN Blade",
+    "wtype": "melee",
+    "dmgType": "beam",
+    "rangeMin": 1,
+    "rangeMax": 1,
+    "power": 40,
+    "en": 8,
+    "hit": 100,
+    "crit": 8
+  },
+  {
+    "id": "gn_vulcan",
+    "name": "GN Vulcan",
+    "wtype": "ranged",
+    "dmgType": "physical",
+    "rangeMin": 1,
+    "rangeMax": 2,
+    "power": 28,
+    "en": 4,
+    "hit": 90,
+    "crit": 5
+  },
+  {
+    "id": "gn_sword_ii",
+    "name": "GN Sword II",
+    "wtype": "melee",
+    "dmgType": "physical",
+    "rangeMin": 1,
+    "rangeMax": 2,
+    "power": 50,
+    "en": 12,
+    "hit": 100,
+    "crit": 10
+  },
+  {
+    "id": "gn_beam_saber",
+    "name": "GN Beam Saber",
+    "wtype": "melee",
+    "dmgType": "beam",
+    "rangeMin": 1,
+    "rangeMax": 1,
+    "power": 42,
+    "en": 8,
+    "hit": 100,
+    "crit": 8
+  },
+  {
+    "id": "gn_beam_rifle",
+    "name": "GN Beam Rifle",
+    "wtype": "ranged",
+    "dmgType": "beam",
+    "rangeMin": 2,
+    "rangeMax": 4,
+    "power": 48,
+    "en": 14,
+    "hit": 95,
+    "crit": 5
+  },
+  {
+    "id": "gn_sword_iii",
+    "name": "GN Sword III",
+    "wtype": "melee",
+    "dmgType": "beam",
+    "rangeMin": 1,
+    "rangeMax": 2,
+    "power": 58,
+    "en": 14,
+    "hit": 100,
+    "crit": 12
+  },
+  {
+    "id": "raiser_sword",
+    "name": "Raiser Sword",
+    "wtype": "ranged",
+    "dmgType": "beam",
+    "rangeMin": 1,
+    "rangeMax": 4,
+    "power": 75,
+    "en": 30,
+    "hit": 100,
+    "crit": 10,
+    "absoluteHit": true
+  },
+  {
+    "id": "mace",
+    "name": "Mace",
+    "wtype": "melee",
+    "dmgType": "physical",
+    "rangeMin": 1,
+    "rangeMax": 1,
+    "power": 35,
+    "en": 5,
+    "hit": 95,
+    "crit": 8
+  },
+  {
+    "id": "wrench_mace",
+    "name": "Wrench Mace",
+    "wtype": "melee",
+    "dmgType": "physical",
+    "rangeMin": 1,
+    "rangeMax": 1,
+    "power": 42,
+    "en": 8,
+    "hit": 95,
+    "crit": 10
+  },
+  {
+    "id": "sword_mace",
+    "name": "Sword Mace",
+    "wtype": "melee",
+    "dmgType": "physical",
+    "rangeMin": 1,
+    "rangeMax": 1,
+    "power": 50,
+    "en": 10,
+    "hit": 100,
+    "crit": 12
+  },
+  {
+    "id": "pile_bunker",
+    "name": "Pile Bunker",
+    "wtype": "melee",
+    "dmgType": "physical",
+    "rangeMin": 1,
+    "rangeMax": 1,
+    "power": 60,
+    "en": 12,
+    "hit": 90,
+    "crit": 15
+  },
+  {
+    "id": "tail_blade",
+    "name": "Tail Blade",
+    "wtype": "melee",
+    "dmgType": "physical",
+    "rangeMin": 1,
+    "rangeMax": 2,
+    "power": 55,
+    "en": 10,
+    "hit": 95,
+    "crit": 12
+  },
+  {
+    "id": "wrench_mace_rex",
+    "name": "Wrench Mace Rex",
+    "wtype": "melee",
+    "dmgType": "physical",
+    "rangeMin": 1,
+    "rangeMax": 1,
+    "power": 70,
+    "en": 14,
+    "hit": 100,
+    "crit": 18
+  },
+  {
+    "id": "machine_gun",
+    "name": "Machine Gun",
+    "wtype": "ranged",
+    "dmgType": "physical",
+    "rangeMin": 1,
+    "rangeMax": 3,
+    "power": 28,
+    "en": 0,
+    "hit": 85,
+    "crit": 5,
+    "ammo": 8
+  },
+  {
+    "id": "heat_hawk",
+    "name": "Heat Hawk",
+    "wtype": "melee",
+    "dmgType": "physical",
+    "rangeMin": 1,
+    "rangeMax": 1,
+    "power": 32,
+    "en": 0,
+    "hit": 95,
+    "crit": 8
+  },
+  {
+    "id": "beam_spray",
+    "name": "Beam Spray Gun",
+    "wtype": "ranged",
+    "dmgType": "beam",
+    "rangeMin": 1,
+    "rangeMax": 3,
+    "power": 30,
+    "en": 8,
+    "hit": 90,
+    "crit": 5
+  },
+  {
+    "id": "beam_tomahawk",
+    "name": "Beam Tomahawk",
+    "wtype": "melee",
+    "dmgType": "beam",
+    "rangeMin": 1,
+    "rangeMax": 2,
+    "power": 55,
+    "en": 14,
+    "hit": 100,
+    "crit": 10
+  },
+  {
+    "id": "funnel_swarm",
+    "name": "Funnel Swarm",
+    "wtype": "map",
+    "dmgType": "beam",
+    "rangeMin": 2,
+    "rangeMax": 5,
+    "power": 62,
+    "en": 24,
+    "hit": 100,
+    "crit": 5,
+    "absoluteHit": true,
+    "mapPattern": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        -1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        -1
+      ]
+    ]
+  },
+  {
+    "id": "mega_particle",
+    "name": "Mega Particle Cannon",
+    "wtype": "ranged",
+    "dmgType": "beam",
+    "rangeMin": 3,
+    "rangeMax": 6,
+    "power": 80,
+    "en": 35,
+    "hit": 95,
+    "crit": 8
+  },
+  {
+    "id": "himat_full_burst",
+    "name": "HiMAT Full Burst",
+    "wtype": "map",
+    "dmgType": "beam",
+    "rangeMin": 2,
+    "rangeMax": 5,
+    "power": 70,
+    "en": 32,
+    "hit": 100,
+    "crit": 8,
+    "absoluteHit": true,
+    "mapPattern": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        -1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        -1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        -1,
+        1
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        -1,
+        -1
+      ]
+    ]
+  }
 ]

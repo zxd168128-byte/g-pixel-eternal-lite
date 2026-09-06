@@ -1,7 +1,111 @@
 [
-  {"id":"amuro","name":"Amuro Ray","rarity":"UR","series":"UC","tags":["newtype","federation"],"atkBonus":12,"defBonus":8,"mobBonus":10,"skill":"newtype_intuition","pairUnitId":"rx78","altPairs":["nu_gundam"],"desc":"The White Devil's pilot."},
-  {"id":"heero","name":"Heero Yuy","rarity":"UR","series":"W","tags":["preventer","zero"],"atkBonus":15,"defBonus":5,"mobBonus":8,"skill":"self_destruct_resolve","pairUnitId":"wing_zero_ew","altPairs":["wing"],"desc":"I'll kill you... and then myself."},
-  {"id":"domon","name":"Domon Kasshu","rarity":"UR","series":"G","tags":["martial","shuffle"],"atkBonus":18,"defBonus":6,"mobBonus":12,"skill":"burning_finger","pairUnitId":"god_gundam","altPairs":[],"desc":"This hand of mine glows with an awesome power!"},
-  {"id":"setsuna","name":"Setsuna F. Seiei","rarity":"UR","series":"00","tags":["innovator","celestial"],"atkBonus":14,"defBonus":7,"mobBonus":15,"skill":"innovation","pairUnitId":"oo_raiser","altPairs":["exia","oo_gundam"],"desc":"I am Gundam."},
-  {"id":"banagher","name":"Banagher Links","rarity":"SSR","series":"UC","tags":["newtype","federation"],"atkBonus":10,"defBonus":10,"mobBonus":10,"skill":"nt_d_link","pairUnitId":"nu_gundam","altPairs":[],"desc":"Unicorn's chosen."}
+  {
+    "id": "amuro",
+    "name": "Amuro Ray",
+    "rarity": "UR",
+    "series": "UC",
+    "tags": [
+      "newtype",
+      "federation"
+    ],
+    "atkBonus": 12,
+    "defBonus": 8,
+    "mobBonus": 10,
+    "skill": "newtype_intuition",
+    "pairUnitId": "rx78",
+    "altPairs": [
+      "nu_gundam"
+    ],
+    "desc": "The White Devil's pilot."
+  },
+  {
+    "id": "heero",
+    "name": "Heero Yuy",
+    "rarity": "UR",
+    "series": "W",
+    "tags": [
+      "preventer",
+      "zero"
+    ],
+    "atkBonus": 15,
+    "defBonus": 5,
+    "mobBonus": 8,
+    "skill": "self_destruct_resolve",
+    "pairUnitId": "wing_zero_ew",
+    "altPairs": [
+      "wing"
+    ],
+    "desc": "I'll kill you... and then myself."
+  },
+  {
+    "id": "domon",
+    "name": "Domon Kasshu",
+    "rarity": "UR",
+    "series": "G",
+    "tags": [
+      "martial",
+      "shuffle"
+    ],
+    "atkBonus": 18,
+    "defBonus": 6,
+    "mobBonus": 12,
+    "skill": "burning_finger",
+    "pairUnitId": "god_gundam",
+    "altPairs": [],
+    "desc": "This hand of mine glows with an awesome power!"
+  },
+  {
+    "id": "setsuna",
+    "name": "Setsuna F. Seiei",
+    "rarity": "UR",
+    "series": "00",
+    "tags": [
+      "innovator",
+      "celestial"
+    ],
+    "atkBonus": 14,
+    "defBonus": 7,
+    "mobBonus": 15,
+    "skill": "innovation",
+    "pairUnitId": "oo_raiser",
+    "altPairs": [
+      "exia",
+      "oo_gundam"
+    ],
+    "desc": "I am Gundam."
+  },
+  {
+    "id": "banagher",
+    "name": "Banagher Links",
+    "rarity": "SSR",
+    "series": "UC",
+    "tags": [
+      "newtype",
+      "federation"
+    ],
+    "atkBonus": 10,
+    "defBonus": 10,
+    "mobBonus": 10,
+    "skill": "nt_d_link",
+    "pairUnitId": "nu_gundam",
+    "altPairs": [],
+    "desc": "Unicorn's chosen."
+  },
+  {
+    "id": "kira",
+    "name": "Kira Yamato",
+    "rarity": "UR",
+    "series": "SEED",
+    "tags": [
+      "seed",
+      "coordinator"
+    ],
+    "atkBonus": 18,
+    "defBonus": 8,
+    "mobBonus": 12,
+    "skill": "seed_mode",
+    "pairUnitId": "freedom",
+    "altPairs": [],
+    "desc": "Ultimate Coordinator."
+  }
 ]
